@@ -389,3 +389,4 @@ $RECYCLE.BIN/
 chat_project/config.json
 .idea
 chat-env
+migrations

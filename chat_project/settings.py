@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-with open("config.json") as json_con:
+with open("chat_project/config.json") as json_con:
     config = json.load(json_con)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,12 +23,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chat_app.apps.ChatAppConfig'
 ]
 
 MIDDLEWARE = [
@@ -59,7 +61,14 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = 'chat_project.asgi.application'
 WSGI_APPLICATION = 'chat_project.wsgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 
 # Database
@@ -113,3 +122,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
