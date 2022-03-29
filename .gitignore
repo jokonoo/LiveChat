@@ -390,3 +390,4 @@ chat_project/config.json
 .idea
 chat-env
 migrations
+nickname.py
