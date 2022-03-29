@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Rooms</title>
-</head>
-<body>
-    What chat room would you like to enter?<br>
-    <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Chat Rooms</title>
+    </head>
+    <body>
+    <script>console.log(something)</script>
+        {% if not request.user.is_authenticated %}
+            Enter Your nickname:<br>
+            <input id="nick-input" type="text" size="15" required="required"><br><br>
+        {% else %}
+            {{request.user.username|json_script:"nickName"}}
+        {% endif %}
 
-    <script>
-        document.querySelector('#room-name-input').focus();
-        document.querySelector('#room-name-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#room-name-submit').click();
-            }
-        };
 
-        document.querySelector('#room-name-submit').onclick = function(e) {
-            var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chat/' + roomName + '/';
-        };
-    </script>
-</body>
+        What chat room would you like to enter?<br>
+        <input id="room-name-input" type="text" size="35"><br>
+        <input id="room-name-submit" type="button" value="Enter">
+
+        <script>
+            document.querySelector('#room-name-input').focus();
+            document.querySelector('#room-name-input').onkeyup = function(e) {
+                if (e.keyCode === 13) {  // enter, return
+                    document.querySelector('#room-name-submit').click();
+                }
+            };
+
+            document.querySelector('#room-name-submit').onclick = function(e) {
+                let nickName = JSON.parse(document.getElementById('nickName').textContent)
+                if (nickName == null){
+                    nickName = document.querySelector('#nick-input').value;}
+
+                const roomName = document.querySelector('#room-name-input').value;
+                if (nickName === '' || roomName === '') {
+                    alert("Both inputs must be filled");
+                    return false;}
+                window.location.pathname = '/chat/' + roomName + '/';
+            };
+        </script>
+    </body>
 </html>
