@@ -1,52 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Chat Rooms</title>
-    </head>
-    <body>
-        {% if not request.user.is_authenticated %}
-            Enter Your nickname:<br>
-            <input id="nick-input" type="text" size="15"><br><br>
-        {% else %}
-            {{request.user.username|json_script:"nickName"}}
-        {{request.user.username}}
-            <script>const v = JSON.parse(document.getElementById('nickName').textContent);
-                console.log(v);</script>
-        {% endif %}
-
-        What chat room would you like to enter?<br>
-        <input id="room-name-input" type="text" size="35"><br>
-        <input id="room-name-submit" type="button" value="Enter">
-
-        <script>
-            document.querySelector('#room-name-input').focus();
-            document.querySelector('#room-name-input').onkeyup = function(e) {
-                if (e.keyCode === 13) {
-                    document.querySelector('#room-name-submit').click();
-                }
-            }
-
-            document.querySelector('#room-name-submit').onclick = function(e) {
-
-                let nickName = document.getElementById('nickName');
-
-                if (nickName == null){
-                    nickName = document.querySelector('#nick-input').value;
-                }
-                else {
-                    nickName = JSON.parse(document.getElementById('nickName').textContent);
-                }
-
-                const roomName = document.querySelector('#room-name-input').value;
-
-                if (nickName === '' || roomName === '') {
-                    alert("Both inputs must be filled");
-                    return false;
-                }
-                localStorage.setItem('nickname', nickName);
-                window.location.pathname = '/chat/' + roomName + '/';
-            }
-        </script>
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Live chat</title>
+</head>
+<body>
+<div id="header">
+    {% if not user.is_authenticated %}
+        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'login' %}">Login</a>
+    {% else %}
+        <a href="{% url 'logout' %}">Logout</a>
+    {% endif %}
+</div><br>
+{% block body %}{% endblock %}
+</body>
 </html>

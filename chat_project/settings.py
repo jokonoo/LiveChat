@@ -129,8 +129,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_URL = 'login'
 
-LOGIN_REDIRECT_URL = 'chat'
+LOGIN_REDIRECT_URL = 'chat_main'
 
-LOGOUT_REDIRECT_URL = 'chat'
+LOGOUT_REDIRECT_URL = 'chat_main'
 
 
