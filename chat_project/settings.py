@@ -30,7 +30,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chat_app.apps.ChatAppConfig'
+    'chat_app.apps.ChatAppConfig',
+    'users_app.apps.UsersAppConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -122,5 +124,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = 'chat'
+
+LOGOUT_REDIRECT_URL = 'chat'
 
 
