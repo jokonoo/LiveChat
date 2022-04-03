@@ -1,0 +1,13 @@
+{% extends 'chat_app/main.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    {{form_p|crispy}}
+    {% for chat_name in chats %}
+        <li>{{chat_name}}</li>
+    {% endfor %}
+    {{form_c|crispy}}
+    <button type="submit">Update</button>
+</form>
+{% endblock %}
