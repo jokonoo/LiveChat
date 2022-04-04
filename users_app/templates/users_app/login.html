@@ -1,15 +1,9 @@
-<!DOCTYPE html>
+{% extends 'chat_app/main.html' %}
 {% load crispy_forms_tags %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
+{% block body %}
     <form method = 'POST'>
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type = 'submit'> Login </button>
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type = 'submit'> Login </button>
     </form>
-</body>
-</html>
+{% endblock %}
